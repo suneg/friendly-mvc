@@ -100,23 +100,32 @@ public class Servlet extends HttpServlet {
 
     private void initIfNeeded() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         if(cfg == null) {
+            Configuration tempConfig = new Configuration();
+
             Reader reader = new BufferedReader(new InputStreamReader(getClass()
                 .getResourceAsStream("/friendly.properties")));
             
             friendlyProperties = new Properties();
             friendlyProperties.load(reader);
 
-            cfg = new Configuration();
-            FileTemplateLoader loader = new FileTemplateLoader(new File(friendlyProperties.getProperty("webapp.location")));
-
-            cfg.setTemplateLoader(loader);
-            cfg.addAutoInclude("initialize.ftl");
-            cfg.setTemplateUpdateDelay(Integer.parseInt(friendlyProperties.getProperty("template.update.delay")));
-
             debugMode = friendlyProperties.get("debug").toString().toLowerCase().equals("true");
+
+            String webappLocation = friendlyProperties.getProperty("webapp.location");
+            File ftlRoot = new File(webappLocation);
+            if(ftlRoot == null)
+                throw new RuntimeException("webapp.location not configured correctly. '" +
+                        webappLocation + "' does not exist.");
+
+            FileTemplateLoader loader = new FileTemplateLoader(ftlRoot);
+
+            tempConfig.setTemplateLoader(loader);
+            tempConfig.addAutoInclude("initialize.ftl");
+            tempConfig.setTemplateUpdateDelay(Integer.parseInt(friendlyProperties.getProperty("template.update.delay")));
 
             Class routingClass = Class.forName(friendlyProperties.getProperty("routing.class"));
             routingHandler = (RoutingHandler)routingClass.newInstance();
+
+            cfg = tempConfig;
         }
     }
 
