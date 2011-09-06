@@ -1,0 +1,35 @@
+<project>
+	<!--
+	NOTICE: 
+	Remember to copy /usr/share/tomcat6/lib/catalina-ant.jar to /usr/share/ant/lib 
+	so the DeployTask and UndeployTask can be loaded
+	-->
+	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" />
+	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" />
+
+	<property name="tomcat.manager" value="http://localhost:8080/manager"/>
+	<property name="tomcat.username" value="tomcat"/>
+	<property name="tomcat.password" value="tomcat"/>
+
+	<property file="build.properties" />
+
+	<property name="ant.project.name" value="example.web"/>
+	<property name="war.dir" value="target"/>
+
+	<target name="deploy">
+	    <deploy url="${tomcat.manager}"
+		username="${tomcat.username}"
+		password="${tomcat.password}"
+		path="/${ant.project.name}"
+		update="true"
+		war="${war.dir}/${ant.project.name}.war" />
+	</target>
+
+	<target name="undeploy">
+	    <undeploy url="${tomcat.manager}"
+		username="${tomcat.username}"
+		password="${tomcat.password}"
+		path="/${ant.project.name}" />
+	</target>
+
+</project>
