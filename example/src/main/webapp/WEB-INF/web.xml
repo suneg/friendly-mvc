@@ -23,7 +23,7 @@
             configurartion for the web application.
         </description>
         <res-ref-name>
-            jdbc/onboarding
+            jdbc/testdb
         </res-ref-name>
         <res-type>
             javax.sql.DataSource
