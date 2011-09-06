@@ -1,14 +1,13 @@
 package com.company.web.controllers;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import dk.bestbrains.friendly.BaseController;
 import dk.bestbrains.friendly.ParameterOrder;
 
 public class HomeController extends BaseController {
-    public void index() throws SQLException {
-        View.put("parm1", "first");
-        View.put("parm2", "second");
+    public void index() {
+        View.put("name", "Sune G");
+        View.put("website", "http://www.bestbrains.dk");
     }
 
     @ParameterOrder("parm1,parm2")
@@ -20,7 +19,7 @@ public class HomeController extends BaseController {
     }
 
     @ParameterOrder("args")
-    public void multi(String[] args) throws IOException {
+    public void multi(String[] args) {
         View.put("parm1", args[0]);
         View.put("parm2", args[1]);
 
