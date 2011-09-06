@@ -6,8 +6,8 @@ import dk.bestbrains.friendly.ParameterOrder;
 
 public class HomeController extends BaseController {
     public void index() {
-        View.put("name", "Sune G");
-        View.put("website", "http://www.bestbrains.dk");
+        View.put("parm1", "first");
+        View.put("parm2", "second");
     }
 
     @ParameterOrder("parm1,parm2")
