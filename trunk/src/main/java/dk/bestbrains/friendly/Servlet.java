@@ -122,8 +122,15 @@ public class Servlet extends HttpServlet {
             tempConfig.addAutoInclude("initialize.ftl");
             tempConfig.setTemplateUpdateDelay(Integer.parseInt(friendlyProperties.getProperty("template.update.delay")));
 
-            Class routingClass = Class.forName(friendlyProperties.getProperty("routing.class"));
-            routingHandler = (RoutingHandler)routingClass.newInstance();
+            String routingClassName = friendlyProperties.getProperty("routing.class");
+
+            if(routingClassName != null) {
+                Class routingClass = Class.forName(routingClassName);
+                routingHandler = (RoutingHandler)routingClass.newInstance();
+            }
+            else {
+                routingHandler = new DefaultUrlRouting();
+            }
 
             cfg = tempConfig;
         }

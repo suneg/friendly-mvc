@@ -1,9 +1,6 @@
-package com.company.web;
+package dk.bestbrains.friendly;
 
-import dk.bestbrains.friendly.RoutingHandler;
-import dk.bestbrains.friendly.RoutingResult;
-
-public class Routing implements RoutingHandler {
+public class DefaultUrlRouting implements RoutingHandler {
 
     @Override
     public RoutingResult getRoute(String uri) {
@@ -23,16 +20,6 @@ public class Routing implements RoutingHandler {
         if (parts.length > 1) {
             action = parts[1].replace(".", "_");
         }
-
-        // IDEA:
-        /*
-         * request.setAttribute("id", part[2]);
-         * ..to enable /booking/view/12352342 style url
-         */
-
-        // Example of aesthetic URLs
-        if(parts[0].toLowerCase().equals("homepage"))
-            controller = "HomeController";
 
         return new RoutingResult(controller, action);
     }
