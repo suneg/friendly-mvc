@@ -44,7 +44,7 @@ public class Servlet extends HttpServlet {
         String templatePath = "";
         
         try { 
-            RoutingResult action = routingHandler.getRoute(request.getPathInfo());
+            RoutingResult action = routingHandler.getRoute(request.getPathInfo(), new ParameterMap(request));
 
             Map viewData = new HashMap();
             
