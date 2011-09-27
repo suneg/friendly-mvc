@@ -41,13 +41,22 @@ public class ActionExecutor {
                     for (int i = 0; i < parameterNames.length; i++) {
                         String parameterName = parameterNames[i].trim();
                         if (parameterTypes[i].equals(String.class)) {
-                            parameterValues[i] = request.getParameter(parameterName);
+                            Object value = request.getParameter(parameterName);
+
+                            if(value == null)
+                                value = request.getAttribute(parameterName);
+
+                            parameterValues[i] = value;
                         }
                         if (parameterTypes[i].isArray()) {
                             parameterValues[i] = request.getParameterValues(parameterName);
                         }
                         if (parameterTypes[i].equals(int.class)) {
                             String value = request.getParameter(parameterName);
+
+                            if(value == null)
+                                value = (String)request.getAttribute(parameterName);
+
                             if(value == null)
                                 parameterValues[i] = 0;
                             else

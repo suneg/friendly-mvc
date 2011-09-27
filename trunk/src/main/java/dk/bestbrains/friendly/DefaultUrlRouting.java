@@ -3,7 +3,7 @@ package dk.bestbrains.friendly;
 public class DefaultUrlRouting implements RoutingHandler {
 
     @Override
-    public RoutingResult getRoute(String uri) {
+    public RoutingResult getRoute(String uri, ParameterMap requestParameters) {
         if (uri.startsWith("/")) {
             uri = uri.substring(1);
         }
