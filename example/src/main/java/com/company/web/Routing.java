@@ -21,19 +21,27 @@ public class Routing implements RoutingHandler {
             controller = parts[0] + "Controller";
         }
 
+        if(parts.length > 1 && parts[1].length() > 0) {
+            action = parts[1];
+        }
+
         // Enable http://www.hostname.com/users/479/details url
         if(parts[0].toLowerCase().equals("users")) {
             if(isNumeric(parts[1])) {
                 controller = "UserController";
-                action = parts[2];
+
+                if(parts.length == 3)
+                    action = parts[2];
+                else
+                    action = "details";
+
                 requestParameters.setAttribute("id", parts[1]);
             }
         }
 
-        // Allow http://www.hostname.com/Home/index.json to be translated to
-        // HomeController.index_json() java method
+        // Allow http://www.hostname.com/User/123/details.json to be translated to
+        // UserController.details_json() java method
         action = action.replace(".", "_");
-
         
         if(parts[0].toLowerCase().equals("homepage"))
             controller = "HomeController";
