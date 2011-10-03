@@ -3,7 +3,7 @@ package dk.bestbrains.friendly;
 public class RoutingResult {
 
     private String controllerName;
-    private final String actionName;
+    private String actionName;
 
     public RoutingResult(String controllerName, String actionName) {
         this.controllerName = controllerName;
@@ -24,5 +24,9 @@ public class RoutingResult {
 
     public void setControllerName(String controllerName) {
         this.controllerName = controllerName;
+    }
+
+    public void setActionName(String actionName) {
+        this.actionName = actionName;
     }
 }
