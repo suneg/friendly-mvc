@@ -27,14 +27,11 @@ public class Routing implements RoutingHandler {
 
         // Enable http://www.hostname.com/users/479/details url
         if(parts[0].toLowerCase().equals("users")) {
-            if(isNumeric(parts[1])) {
-                controller = "UserController";
+            controller = "UserController";
+            action = "index";
 
-                if(parts.length == 3)
-                    action = parts[2];
-                else
-                    action = "details";
-
+            if(parts.length == 3 && isNumeric(parts[1])) {
+                action = parts[2];
                 requestParameters.setAttribute("id", parts[1]);
             }
         }

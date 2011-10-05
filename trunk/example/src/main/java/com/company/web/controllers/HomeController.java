@@ -6,12 +6,10 @@ import dk.bestbrains.friendly.ParameterOrder;
 
 public class HomeController extends BaseController {
     public void index() {
-        View.put("parm1", "first");
-        View.put("parm2", "second");
     }
 
     @ParameterOrder("parm1,parm2")
-    public void test(String parm1, String parm2) {
+    public void parameters(String parm1, String parm2) {
         View.put("parm1", parm1);
         View.put("parm2", parm2);
 
@@ -35,6 +33,8 @@ public class HomeController extends BaseController {
         }
         else {
             View.put("authorization", authorization);
+            
+            render("index");
         }
     }
 }
