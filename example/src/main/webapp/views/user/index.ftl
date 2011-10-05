@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Friendly Example</h1>
+        <title>Friendly ${EXAMPLE}</h1>
     </head>
     <body>
         <h1>Users</h1>

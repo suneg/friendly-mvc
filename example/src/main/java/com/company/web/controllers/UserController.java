@@ -13,6 +13,12 @@ public class UserController extends BaseController {
     }
 
     @ParameterOrder("id")
+    public void details(int id) {
+        User user = loadUser(id);
+        View.put("user", user);
+    }
+
+    @ParameterOrder("id")
     public JsonResult details_json(int id) {
         User user = loadUser(id);
         return toJson(user);
@@ -22,12 +28,6 @@ public class UserController extends BaseController {
     public XmlResult details_xml(int id) {
         User user = loadUser(id);
         return toXml(user);
-    }
-
-    @ParameterOrder("id")
-    public void details(int id) {
-        User user = loadUser(id);
-        View.put("user", user);
     }
 
     private User loadUser(int id) {

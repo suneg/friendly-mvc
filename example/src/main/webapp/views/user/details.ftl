@@ -1,10 +1,11 @@
+<!-- http://www.w3.org/1999/xhtml -->
+<html >
+    <body>
+        <h1>${USER_DETAILS}</h1>
 
-<html>
-<body>
-<h1>User details</h1>
-<div>User id: ${view.user.id?string.computer}</div>
-<div>Name: ${view.user.name}</div>
-<div>Company: ${view.user.company}</div>
-<div>Age: ${view.user.age}</div>
-</body>
+        <div>${USER_ID}: ${view.user.id?string.computer}</div>
+        <div>${NAME}: ${view.user.name}</div>
+        <div>${COMPANY}: ${view.user.company}</div>
+        <div>${AGE}: ${view.user.age}</div>
+    </body>
 </html>
